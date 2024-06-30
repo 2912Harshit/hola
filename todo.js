@@ -23,9 +23,7 @@ app.get("/todos/:id",function(req,res){
       res.status(404).send("file not found")
     }else{
       let todos=JSON.parse(data);
-      let todo=todos.find((t)=>{
-        t.id==parseInt(req.params.id)
-      })
+      let todo=todos.find((t)=>{return t.id===parseInt(req.params.id)})
       if(!todo){
         res.status(404).send("todo not found")
       }else{
@@ -66,7 +64,7 @@ app.post("/todos/:id",function(req,res){
     }
     else{
       let todos=JSON.parse(data)
-      let todo=todos.find(t=>t.is==parseInt(req.params.id))
+      let todo=todos.find(t=>t.id==parseInt(req.params.id))
       if(!todo){
         res.send("cannnot find todo").status(500)
       }else{
